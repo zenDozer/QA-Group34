@@ -1,9 +1,8 @@
-#HOMEWORK 1
-
+# HOMEWORK 1
 ## Terminal, Git Bash
 
-1) Посмотреть где я
-pwd
+**1) Посмотреть где я**
+	`pwd`
 
 2) Создать папку
 mkdir Group34
