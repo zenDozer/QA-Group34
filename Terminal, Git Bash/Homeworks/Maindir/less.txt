@@ -1,0 +1,141 @@
+Команда less
+ Команда less
+Команда less позволяет задействовать одноименную утилиту, предназначенную для постраничного вывода содержимого текстовых файлов значительного объема. Она похожа на команду more, но имеет больше функций, которые, тем не менее, могут потребоваться далеко не всем пользователям. Утилита особенно удобна для быстрого открытия текстовых файлов, так как не загружает их содержимое полностью.
+
+Базовый синтаксис команды выглядит следующим образом:
+
+$ less [параметры] имя-текстового-файла
+
+Утилита поддерживает большое количество параметров, причем практически все из этих параметров являются узкоспециализированным и едва ли пригодятся большинству пользователей, а самыми востребованными из них являются параметр -N, позволяющий выводить номера строк, что очень удобно при чтении программного кода, параметр -X, позволяющий не очищать содержимое терминала после завершения работы утилиты, а также параметр -I, позволяющий осуществлять поиск в тексте без учета регистра символов. Утилита работает в интерактивном режиме и позволяет использовать команды для навигации по содержимому файла, поиска строк и управления работой утилиты:
+
+Команда	Назначение
+Клавиша со стрелкой вниз, Enter, e, j	Перемещение на одну строку к концу файла
+Клавиша со стрелкой вверх, y, k	Перемещение на одну строку к началу файла
+Пробел, f	Перемещение на одну страницу к концу файла
+b	Перемещение на одну страницу к началу файла
+/текст	Поиск текста по направлению к концу файла
+?текст	Поиск текста по направлению к началу файла
+n	Повторение предыдущего поиска
+N	Повторение предыдущего поиска в обратном направлении
+Home, g	Переход к первой строке файла
+Ng
+Переход к строке файла номер N
+End, G	Переход к последней строке файла
+Home, p	Переход к началу файла
+Np
+Переход к позиции файла в N процентов
+q	Завершение работы утилиты
+h	Вывод информации о доступных командах
+Команды, не представленные одной клавишей, вводятся после имени файла или двоеточия в последней строке в нижней части экрана.
+
+Примеры использования
+Отображение содержимого текстового файла
+Для отображения содержимого тестового файла достаточно передать утилите имя этого файла без каких-либо параметров:
+
+$ less oui.txt
+OUI/MA-L                        Organization
+company_id                      Organization
+                                Address
+
+00-22-72   (hex)                American Micro-Fuel Device Corp.
+002272     (base 16)            American Micro-Fuel Device Corp.
+                                2181 Buchanan Loop
+                                Ferndale WA 98248
+                                US
+
+00-D0-EF   (hex)                IGT
+00D0EF     (base 16)            IGT
+                                9295 PROTOTYPE DRIVE
+                                RENO NV 89511
+                                US
+
+08-61-95   (hex)                Rockwell Automation
+086195     (base 16)            Rockwell Automation
+                                1 Allen-Bradley Dr.
+                                Mayfield Heights OH 44124-6118
+oui.txt
+
+Для прокрутки содержимого удобнее всего пользоваться клавишами со стрелками, пробелом, а также клавишами Home и End. Для закрытия файла может использоваться клавиша q.
+
+Поиск в текстовом файле
+Для поиска в текстовом файле нужно открыть этот файл и воспользоваться командами /текст или ?текст. Например:
+
+                               San Francisco CA 94107
+                               US
+
+50-EC-50   (hex)               Beijing Xiaomi Mobile Software Co., Ltd
+50EC50     (base 16)           Beijing Xiaomi Mobile Software Co., Ltd
+                               The Rainbow City Office Building, 68 Qinghe Middle Street Haidian District
+                               Beijing Beijing 100085
+                               CN
+
+60-61-DF   (hex)               Z-meta Research LLC
+6061DF     (base 16)           Z-meta Research LLC
+                               8365 Quay Drive
+                               Arvada CO 80003
+                               US
+
+70-57-BF   (hex)               New H3C Technologies Co., Ltd
+7057BF     (base 16)           New H3C Technologies Co., Ltd
+                               466 Changhe Road, Binjiang District
+                               Hangzhou Zhejiang 310052
+                               CN
+
+8C-E7-48   (hex)               Private
+/cisco
+
+Если вы хотите осуществлять поиск без учета регистра, следует открыть файл с использованием параметра -I:
+
+$ less -I oui.txt
+F4-BD-9E   (hex)               Cisco Systems, Inc
+F4BD9E     (base 16)           Cisco Systems, Inc
+                               80 West Tasman Drive
+                               San Jose CA 94568
+                               US
+
+58-85-E9   (hex)               Realme Chongqing MobileTelecommunications Corp Ltd
+5885E9     (base 16)           Realme Chongqing MobileTelecommunications Corp Ltd
+                               No.24 Nichang Boulevard, Huixing Block, Yubei District, Chongqing.
+                               Chongqing China 401120
+                               CN
+
+BC-23-92   (hex)               BYD Precision Manufacture Company Ltd.
+BC2392     (base 16)           BYD Precision Manufacture Company Ltd.
+                               No.3001, Bao He Road, Baolong Industrial, Longgang Street,Longgang Zone, Shenzhen
+                               shenzhen 518116
+                               CN
+
+94-E6-F7   (hex)               Intel Corporate
+/cisco
+
+Как видите, результаты поиска отличаются.
+
+Чтение программного кода
+Для чтения программного кода удобнее использовать режим вывода номеров строк. Для этого следует использовать параметр -N.
+
+$ less -N usals.c
+1 #include <stdio.h>
+2 #include <math.h>
+3
+4 float deg_to_rad(float degrees)
+5 {
+6 return degrees * M_PI / 180.0;
+7 }
+8
+9 float rad_to_deg(float radians)
+10 {
+11 return radians * 180.0 / M_PI;
+12 }
+13
+14 /*float usals(float sitelong, float sitelat, float satlong)
+15 {
+16 float cangle, elevation, intangle, satazimuth, satelevation, azimuth;
+17
+18 sitelong = deg_to_rad(sitelong);
+19 sitelat = deg_to_rad(sitelat);
+20 satlong = deg_to_rad(sitelong);
+21
+22 cangle = cos(sitelong)*cos(satlong-sitelong);
+usals.c
+
+Навигация по файлу будет осуществляться аналогичным образом. Для перехода к строке с заданными номером следует использовать команду Ng, то есть, к примеру, для перехода к десятой строке следует использовать команду 10g.

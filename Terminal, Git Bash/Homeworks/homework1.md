@@ -7,19 +7,19 @@
 
 **2) Создать папку**
 
-`mkdir Group34`
+`mkdir Maindir`
 
 **3) Зайти в папку**
 
-`cd Group34`
+`cd Maindir`
 
 **4) Создать 3 папки**
 
-`mkdir Lesson1 Lesson2 Lesson3`
+`mkdir Subdir1 Subdir2 Subdir3`
 
 **5) Зайти в любоую папку**
 
-`cd Lesson1`
+`cd Subdir1`
 
 **6) Создать 5 файлов (3 txt, 2 json)**
 
@@ -27,7 +27,7 @@
   
 **7) Создать 3 папки**
 
-`mkdir folder1 folder2 folder3`
+`mkdir Subdir1-1 Subdir1-2 Subdir1-3`
 
 **8. Вывести список содержимого папки**
 
@@ -51,31 +51,31 @@
 
 **13) переместить любые 2 файла, которые вы создали, в любую другую папку.**
 
-`mv Lesson1/file1.txt Lesson1/file1.json Lesson1/folder1`
+`mv Subdir1/file1.txt Subdir1/file1.json Subdir1/Subdir1-1`
 
 **14) скопировать любые 2 файла, которые вы создали, в любую другую папку.**
 
-`cp Lesson1/folder1/*.* Lesson1`
+`cp Subdir1/Subdir1-1/*.* Subdir1`
 
 **15) Найти файл по имени**
 
-`find -name file3.txt`
+`find -name file1.txt`
 
 **16) просмотреть содержимое в реальном времени (команда grep) изучите как она работает.**
 
-`tail -f Lesson1/file1.txt | grep 111`
+`tail -f Subdir1/file1.txt | grep 111`
 
 **17) вывести несколько первых строк из текстового файла**
 
-`head -n 5 Lesson1/file1.txt`
+`head -n 5 Subdir1/file1.txt`
 
 **18) вывести несколько последних строк из текстового файла**
 
-`tail -n 5 Lesson1/file1.txt`
+`tail -n 5 Subdir1/file1.txt`
 
 **19) просмотреть содержимое длинного файла (команда less) изучите как она работает.**
 
-`less Lesson1/less.txt`
+`less less.txt`
 
 **20) вывести дату и время**
 
@@ -92,16 +92,17 @@
 ***2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13***
 
 ```
+cd ..
 touch script.sh
 vim script.sh
 #! /bin/bash
-cd Group34
-mkdir Lesson1_1 Lesson2_2 Lesson3_3
-cd Lesson1_1
-touch file1.txt file2.txt file3.txt file1.json file2.json
-mkdir folder1 folder2 folder3
+cd Maindir
+mkdir SubdirA1 SubdirA2 SubdirA3
+cd SubdirA1
+touch fileA1.txt fileA2.txt fileA3.txt fileA1.json fileA2.json
+mkdir SubdirA1-1 SubdirA1-2 SubdirA1-3
 ls -la
-mv file1.txt file1.json folder1/
+mv fileA1.txt fileA1.json SubdirA1-1/
 :wq
 ./script.sh
 ```
